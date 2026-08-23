@@ -1,0 +1,1 @@
+Simultaneous front and back camera capture with picture-in-picture. Proof of concept, verified on Fairphone 5.

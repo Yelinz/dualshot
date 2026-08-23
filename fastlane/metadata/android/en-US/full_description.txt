@@ -1,0 +1,9 @@
+DualShot is a proof-of-concept app for simultaneous front and back camera capture. It uses raw Camera2 concurrent streaming to capture from both cameras at the same time, compositing the front-facing camera as a draggable, resizable picture-in-picture over the back camera view.
+
+The composited scene is saved into photos and baked into recorded videos. The PIP can be moved and resized live during recording.
+
+Currently verified working on Fairphone 5 (Android 15). This is a debug build from the development branch.
+
+DualShot is a fork of Open Camera (© Mark Harman, GPL-3.0-or-later). All source code remains public under the GPL.
+
+For more information, see: https://zzd.ch/labs/dualshot

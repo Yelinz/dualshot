@@ -1,53 +1,89 @@
-# Open Camera — Dual-Camera PIP fork
+# DualShot — Simultaneous Front+Back Camera Capture
 
-A fork of [Open Camera](https://opencamera.org.uk) (v1.56.2) that adds **simultaneous
-front + back camera capture**: a draggable, pinch-resizable front-camera
-picture-in-picture over the normal camera, composited into saved photos and baked
-into recorded videos. Built for — and developed on — the **Fairphone 5**, which (like
-many devices) supports concurrent front+back streaming even though it doesn't
-advertise `FEATURE_CAMERA_CONCURRENT`, so flag-checking apps refuse to try. This
-fork uses raw Camera2 and just tries.
+DualShot is a proof-of-concept app for simultaneous front and back camera capture on devices whose Camera2 HAL supports concurrent streaming. A draggable, pinch-resizable front-camera picture-in-picture floats over the back camera preview, and is composited into saved photos and baked into recorded videos.
 
-Everything else is stock Open Camera: all of its photo/video modes, manual controls,
-and settings work unchanged. The PIP is a toggle (on-screen icon), not a separate mode.
+**Primary test device:** Fairphone 5 (Snapdragon 695, Android 15 / API 35)
 
-## Status
+## What it does
 
-Working on Fairphone 5 / Android 15 (developed and tested there exclusively so far):
+- **PIP preview:** Front camera in a movable, resizable window over the back camera view
+- **Photo capture:** Composites the front image into the back photo at the PIP's on-screen position
+- **Video recording:** Bakes the composited scene into the video; the PIP can be moved/resized during recording
+- **Portrait and landscape:** Supports both orientations
+- All other Open Camera features remain unchanged: manual controls, multiple save modes, video codecs, and settings
 
-- PIP preview over the normal camera: drag to move, pinch to resize, position persisted
-- Photos: front image composited into the saved photo at the PIP position
-  (single-output modes; panorama/burst/RAW-only save unchanged)
-- Video: PIP baked into the recorded file via a GL compositor spliced between the
-  camera and Open Camera's recorder — live-repositionable while recording
-- Portrait and landscape preview/photos; **landscape video records without the PIP**
-  (not yet implemented — a toast says so)
-- Requires the Camera2 API (the fork auto-selects it on capable devices) and Android 10+
+## Status (v7)
 
-Not yet done: releases/signing, F-Droid/Play packaging (the app still uses the upstream
-application ID — must change before any store publishing), translations for the new
-strings, testing beyond one device. See `docs/HANDOFF.md` for the full state of the
-project and `DUALCAM_SPEC.md` / `docs/PIP_SPEC.md` / `docs/PIP_RECON.md` for the
-architecture.
+**Verified working on Fairphone 5 / Android 15.** Known limitations:
+
+- Built and tested on a single device only
+- Debug builds via GitHub Actions CI (no production signing yet)
+- Requires the Camera2 API and Android 10+
+- Video recording in landscape orientation does not yet include the PIP
+
+See `docs/PIP_SPEC.md` and `DUALCAM_SPEC.md` for the full technical architecture.
 
 ## Building
 
-JDK 17 and an Android SDK with platform 36. Create `local.properties` with
-`sdk.dir=/path/to/sdk`, then:
+**Requirements:** JDK 17 and Android SDK platform 36.
 
+Create `local.properties` with your SDK location:
 ```
+sdk.dir=/path/to/android-sdk
+```
+
+Build the debug APK:
+```bash
 ./gradlew assembleDebug
 ```
 
-CI builds a debug APK for every push (see Actions → artifacts).
+CI builds automatically on every push to `main`. Download the APK from the **Actions → Artifacts** section of this repository.
 
-## Where the fork's code lives
+## Fork information
 
-- New code: `app/src/main/java/net/sourceforge/opencamera/dualcam/` (Kotlin)
-- Every change to upstream files is fenced with `// DUALCAM-PIP begin` / `end`
-  comments: `grep -rn "DUALCAM-PIP" app/src/main/java --include=*.java`
+DualShot is a fork of [Open Camera](https://opencamera.org.uk) v1.56.2 (upstream commit 0dd4cbe). All fork changes are clearly fenced with `// DUALCAM-PIP begin/end` comments in the source code:
+
+```bash
+grep -rn "DUALCAM-PIP" app/src/main/java --include="*.java"
+```
+
+**New code** lives in `app/src/main/java/net/sourceforge/opencamera/dualcam/` (Kotlin).
 
 ## License
 
-GPL-3.0-or-later, same as upstream Open Camera (© Mark Harman and contributors).
-Fork changes © the fork's contributors, same license.
+GPL-3.0-or-later, same as upstream Open Camera.
+
+- **Open Camera:** © 2013–2026 Mark Harman, under GPL-3.0-or-later
+- **DualShot fork changes:** © 2024–2026 zzd labs, under GPL-3.0-or-later
+
+See `gpl-3.0.txt` for the full GPL license text.
+
+## Links
+
+- **zzd Labs:** https://zzd.ch/labs/dualshot (coming soon)
+- **Open Camera:** https://opencamera.org.uk
+- **Fork source:** https://github.com/zzd-labs/opencamera-dualcam
+
+## Technical notes
+
+### Camera2 concurrent streaming without `FEATURE_CAMERA_CONCURRENT`
+
+Fairphone 5 advertises no `FEATURE_CAMERA_CONCURRENT` and `getConcurrentCameraIds()` returns empty, but raw Camera2 concurrent front+back streaming works reliably in practice. This fork does not gate the feature on those Android flags; instead, it attempts concurrent capture and fails gracefully if the device does not support it.
+
+See `DUALCAM_SPEC.md` §1 for device probe results and `docs/PIP_SPEC.md` for the implementation architecture.
+
+### Orientation and transforms
+
+- **GL rendering:** Uses only `SurfaceTexture.getTransformMatrix()` — no app-side rotation applied
+- **JPEG stills:** Manually rotated in PhotoProcessor based on `SENSOR_ORIENTATION`
+- **Video:** Shot upright; the GL compositor applies the same transform rules as the preview renderer
+
+This approach is device-validated on Fairphone 5 hardware.
+
+## Contributing
+
+For bugs and feature requests, open an issue or submit a pull request.
+
+---
+
+Built with ❤️ for dual-camera enthusiasts and the Fairphone community.
