@@ -6,7 +6,7 @@ android {
     compileOptions.encoding = 'UTF-8'
 
     defaultConfig {
-        applicationId "net.sourceforge.opencamera"
+        applicationId "ch.zzd.dualshot"
         minSdkVersion 23
         targetSdkVersion 36
         //compileSdkVersion 31 // needed to support appcompat:1.4.0 (which we need for emoji policy support, and not yet ready to target SDK 30)
@@ -32,7 +32,7 @@ android {
         abortOnError false
         checkReleaseBuilds false
     }
-    namespace 'net.sourceforge.opencamera'
+    namespace 'ch.zzd.dualshot'
     buildFeatures {
     }
     //useLibrary 'android.test.mock'
