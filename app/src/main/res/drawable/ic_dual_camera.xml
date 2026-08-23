@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Entry-point icon for DualCam mode (net.sourceforge.opencamera.dualcam.DualCameraActivity):
+     an outlined camera frame with a small filled picture-in-picture window, echoing the
+     mode's actual back-camera-fullscreen + front-camera-PIP composite. Matches the plain
+     white 48dp vector style used by Open Camera's other on-screen icons. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:pathData="M4,4 H20 A2,2 0 0 1 22,6 V17 A2,2 0 0 1 20,19 H4 A2,2 0 0 1 2,17 V6 A2,2 0 0 1 4,4 Z"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.6"
+        android:fillColor="#00000000" />
+    <path
+        android:pathData="M14,12 H19 A1,1 0 0 1 20,13 V16.5 A1,1 0 0 1 19,17.5 H14 A1,1 0 0 1 13,16.5 V13 A1,1 0 0 1 14,12 Z"
+        android:fillColor="#FFFFFF" />
+</vector>

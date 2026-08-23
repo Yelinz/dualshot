@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Strings for dual-camera PIP (net.sourceforge.opencamera.dualcam). Kept in a separate file
+     from strings.xml so the feature's strings are easy to find/maintain independently. -->
+<resources>
+
+    <string name="dual_camera_mode">Dual camera PIP</string>
+    <string name="dual_camera_not_supported">Dual camera PIP is not supported on this version of Android</string>
+
+    <string name="preference_show_dual_camera_mode">Show dual camera PIP icon</string>
+    <string name="preference_show_dual_camera_mode_summary">Shows an on-screen icon to toggle a small front-camera picture-in-picture window over the normal camera preview. Requires Android 10 or later.</string>
+
+    <string name="dualcam_pip_enable">Enable dual camera PIP</string>
+    <string name="dualcam_pip_disable">Disable dual camera PIP</string>
+    <string name="dualcam_pip_needs_back_camera">Dual camera PIP needs the back camera – it\'ll appear once you switch back</string>
+    <string name="dualcam_pip_needs_camera2">Dual camera PIP needs the Camera2 API – change \"Camera API\" in Settings, then restart</string>
+    <string name="dualcam_pip_video_not_yet_supported">PIP not recorded in this video</string>
+    <string name="dualcam_pip_video_degraded">PIP couldn\'t be added to this video: %1$s</string>
+
+</resources>

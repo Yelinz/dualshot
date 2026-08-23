@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Small solid dot for DualCameraActivity's recording timer, reusing Open Camera's
+     existing recording-red (see take_video_recording.xml's shutter_icon_video_recording). -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <solid android:color="@color/shutter_icon_video_recording"/>
+</shape>
