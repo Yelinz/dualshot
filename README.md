@@ -1,5 +1,7 @@
 # DualShot — Simultaneous Front+Back Camera Capture
 
+[![Build APK](https://github.com/Yelinz/dualshot/actions/workflows/build-apk.yml/badge.svg)](https://github.com/Yelinz/dualshot/actions/workflows/build-apk.yml)
+
 DualShot is a proof-of-concept app for simultaneous front and back camera capture on devices whose Camera2 HAL supports concurrent streaming. A draggable, pinch-resizable front-camera picture-in-picture floats over the back camera preview, and is composited into saved photos and baked into recorded videos.
 
 **Primary test device:** Fairphone 5 (Snapdragon 695, Android 15 / API 35)
@@ -12,14 +14,15 @@ DualShot is a proof-of-concept app for simultaneous front and back camera captur
 - **Portrait and landscape:** Supports both orientations
 - All other Open Camera features remain unchanged: manual controls, multiple save modes, video codecs, and settings
 
-## Status (v7)
+## Status
 
 **Verified working on Fairphone 5 / Android 15.** Known limitations:
 
 - Built and tested on a single device only
-- Debug builds via GitHub Actions CI (no production signing yet)
+- Debug builds via GitHub Actions CI (no production signing yet), so you install the APK yourself
 - Requires the Camera2 API and Android 10+
 - Video recording in landscape orientation does not yet include the PIP
+- Not published on Google Play or F-Droid
 
 See `docs/PIP_SPEC.md` and `DUALCAM_SPEC.md` for the full technical architecture.
 
@@ -60,9 +63,9 @@ See `gpl-3.0.txt` for the full GPL license text.
 
 ## Links
 
-- **zzd Labs:** https://zzd.ch/labs/dualshot (coming soon)
+- **zzd Labs:** https://zzd.ch/labs/dualshot
 - **Open Camera:** https://opencamera.org.uk
-- **Fork source:** https://github.com/zzd-labs/opencamera-dualcam
+- **This fork:** https://github.com/Yelinz/dualshot
 
 ## Technical notes
 
