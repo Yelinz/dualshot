@@ -32,7 +32,14 @@ android {
         abortOnError false
         checkReleaseBuilds false
     }
-    namespace 'ch.zzd.dualshot'
+    // NOTE: `namespace` must stay at the upstream Java/Kotlin package. It is what
+    // decides where AGP generates the R class, so changing it to ch.zzd.dualshot
+    // moved R to ch.zzd.dualshot.R and every unqualified `R.` in the ~33 Java files
+    // and in dualcam/PipController.kt stopped resolving (CI run 32663871784,
+    // 2026-08-23: "Unresolved reference 'R'", :app:compileDebugKotlin FAILED).
+    // The rebrand lives in `applicationId` above (install identity + signing) and in
+    // the app_name string — those are the only two the stores and the launcher see.
+    namespace 'net.sourceforge.opencamera'
     buildFeatures {
     }
     //useLibrary 'android.test.mock'
