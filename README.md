@@ -1,5 +1,7 @@
 # DualShot — Simultaneous Front+Back Camera Capture
 
+[![Build APK](https://github.com/Yelinz/dualshot/actions/workflows/build-apk.yml/badge.svg)](https://github.com/Yelinz/dualshot/actions/workflows/build-apk.yml)
+
 DualShot is a proof-of-concept app for simultaneous front and back camera capture on devices whose Camera2 HAL supports concurrent streaming. A draggable, pinch-resizable front-camera picture-in-picture floats over the back camera preview, and is composited into saved photos and baked into recorded videos.
 
 **Primary test device:** Fairphone 5 (Snapdragon 695, Android 15 / API 35)

@@ -1,5 +1,11 @@
 # Builds a debug APK on every push/PR and publishes it as a workflow artifact.
 # No releases are cut from here (yet) - grab the APK from the run's Artifacts section.
+#
+# The badge in README.md points at this workflow ON PURPOSE. This repo spent its
+# first two weeks public with a red X nobody saw: the only run ever made failed,
+# because the rebrand moved `namespace` and with it the generated R class. A
+# badge on the front page is the cheapest way for the next such break to be
+# noticed by whoever opens the repo, which is the whole audience this project has.
 name: Build APK
 
 on:
